@@ -10,25 +10,32 @@ on:
       - main
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository to the runner
+      # Step 1: Checkout the repository to the runner
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Set up Node.js and Yarn
+      # Step 2: Set up Node.js and Yarn
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Specify the Node.js version
-          cache: 'yarn'       # Cache Yarn dependencies
+          node-version: "20" # Specify the Node.js version
+          cache: "yarn" # Cache Yarn dependencies
 
-      # Install dependencies using Yarn
+      # Step 3: Install dependencies using Yarn
       - name: Install dependencies
         run: yarn install
 
-      # Build the project using Yarn and Vite
+      # Step 4: Build the project using Yarn and Vite
       - name: Build Vite project
         run: yarn build
+
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Use GitHub's automatic token
+          publish_dir: ./dist # Path to the built output folder
