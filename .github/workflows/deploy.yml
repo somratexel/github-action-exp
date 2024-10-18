@@ -2,14 +2,15 @@ name: Deploy Vite Project
 
 on:
   workflow_run:
-    workflows: ["Build Vite Project", "Test Vite Project"] # Triggers after build and test
+    workflows: ["Test Vite Project"]
     types:
       - completed
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }} # Only runs if both workflows succeed
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} # Run only if Test workflow succeeds
     runs-on: ubuntu-latest
+
     steps:
       # Step 1: Checkout the repository
       - name: Checkout repository
@@ -22,11 +23,11 @@ jobs:
           node-version: "20"
           cache: "yarn"
 
-      # Step 3: Download build artifacts from the build workflow
+      # Step 3: Download build artifacts from the Build workflow
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
-          name: dist
+          name: vite-build
 
       # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages

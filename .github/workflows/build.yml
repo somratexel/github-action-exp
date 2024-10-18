@@ -31,9 +31,9 @@ jobs:
       - name: Build Vite project
         run: yarn build
 
-      # Step 5: Upload build artifacts for deployment
+      # Step 5: Upload build artifacts
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: dist
-          path: ./dist
+          name: vite-build
+          path: ./dist # This is the folder to be used in the deploy workflow
