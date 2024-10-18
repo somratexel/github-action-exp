@@ -1,7 +1,6 @@
 name: Test Vite Project
 
 on:
-  # Triggers the workflow on push or pull request events to the main branch
   push:
     branches:
       - main
@@ -10,10 +9,10 @@ on:
       - main
 
 jobs:
-  run-test:
+  test:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the repository to the runner
+      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -21,13 +20,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20" # Specify the Node.js version
-          cache: "yarn" # Cache Yarn dependencies
+          node-version: "20"
+          cache: "yarn"
 
       # Step 3: Install dependencies using Yarn
       - name: Install dependencies
         run: yarn install
 
-      # Step 4: Run the test
-      - name: Run test
+      # Step 4: Run the tests
+      - name: Run tests
         run: yarn test
