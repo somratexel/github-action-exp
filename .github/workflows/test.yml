@@ -1,0 +1,22 @@
+name: Test Vite Project
+
+on:
+  # Triggers the workflow on push or pull request events to the main branch
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository to the runner
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Run the test
+      - name: Run test
+        run: yarn test
