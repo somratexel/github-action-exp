@@ -8,28 +8,28 @@ on:
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }} # Run only if Test workflow succeeds
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js and Yarn
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "yarn"
 
-      # Step 3: Download build artifacts from the Build workflow
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
+      # Restore the cached dist folder from the build workflow
+      - name: Restore cache
+        uses: actions/cache@v3
         with:
-          name: vite-build
+          path: ./dist
+          key: build-dist-${{ github.sha }}
+          restore-keys: |
+            build-dist-
 
-      # Step 4: Deploy to GitHub Pages
+      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

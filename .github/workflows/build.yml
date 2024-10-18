@@ -12,28 +12,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js and Yarn
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "yarn"
 
-      # Step 3: Install dependencies using Yarn
       - name: Install dependencies
         run: yarn install
 
-      # Step 4: Build the project using Yarn and Vite
       - name: Build Vite project
         run: yarn build
 
-      # Step 5: Upload build artifacts
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+      # Cache the dist folder to make it available in the deploy workflow
+      - name: Cache built project
+        uses: actions/cache@v3
         with:
-          name: vite-build
-          path: ./dist # This is the folder to be used in the deploy workflow
+          path: ./dist
+          key: build-dist-${{ github.sha }}
