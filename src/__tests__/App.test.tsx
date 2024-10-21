@@ -15,7 +15,7 @@ describe("App Component", () => {
   it("renders the correct header text", () => {
     render(<App />);
 
-    const header = screen.getByText("Vite + React V-1.0.4");
+    const header = screen.getByText("Vite + React V-1.0.5");
     expect(header).toBeInTheDocument();
   });
 
