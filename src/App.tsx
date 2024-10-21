@@ -6,6 +6,8 @@ import TestForm from "./components/TestForm";
 
 function App() {
   const [count, setCount] = useState(0);
+  const envName = import.meta.env.VITE_APP_ENV;
+  const appSecret = import.meta.env.VITE_APP_SECRET;
 
   return (
     <>
@@ -30,6 +32,12 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <TestForm />
+      <p>
+        App is running on <strong>{envName}</strong> mode!!!
+      </p>
+      <p>
+        App secret is <strong>{appSecret}</strong>
+      </p>
     </>
   );
 }

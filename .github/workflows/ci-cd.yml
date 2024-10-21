@@ -35,6 +35,9 @@ jobs:
 
       - name: Build Vite project
         run: yarn build
+        env:
+          VITE_APP_SECRET: ${{ secrets.VITE_APP_SECRET }}
+          VITE_APP_ENV: ${{ vars.VITE_APP_ENV }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
