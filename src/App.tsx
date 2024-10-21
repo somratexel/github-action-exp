@@ -6,8 +6,8 @@ import TestForm from "./components/TestForm";
 
 function App() {
   const [count, setCount] = useState(0);
-  const envName = import.meta.env.VITE_APP_ENV;
-  const appSecret = import.meta.env.VITE_APP_SECRET;
+  const envName = import.meta.env?.VITE_APP_ENV;
+  const appSecret = import.meta.env?.VITE_APP_SECRET;
 
   return (
     <>
