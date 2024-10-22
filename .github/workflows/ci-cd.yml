@@ -32,6 +32,10 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+      - name: Print secrents and variables
+        run: |
+          echo "VITE_APP_SECRET variable : $secrets.VITE_APP_SECRET"
+          echo "VITE_APP_ENV variable : $vars.VITE_APP_ENV"
 
       - name: Build Vite project
         run: yarn build
