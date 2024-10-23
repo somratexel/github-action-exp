@@ -53,3 +53,7 @@ export default tseslint.config({
 
 https://testing-library.com/docs/dom-testing-library/cheatsheet
 https://testing-library.com/docs/react-testing-library/cheatsheet
+
+## SonarCloud
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=somratexel_github-action-exp&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=somratexel_github-action-exp)
