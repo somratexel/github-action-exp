@@ -1,5 +1,5 @@
 /**
- * This method is to test sonarcloud
+ * Intentionally write this method is to test sonarcloud
  */
 export function calculateTotalPrice(cartItems: any[]): number {
   let totalPrice = 0;
