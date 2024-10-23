@@ -11,9 +11,6 @@ export function calculateTotalPrice(cartItems: any[]): number {
     totalPrice += cartItems[i].price * cartItems[i].quantity;
   }
 
-  // Intentional issue: Unused variable
-  const discount = 0;
-
   // Intentional issue: Logging sensitive data (not good practice for production)
   console.log("Total Price:", totalPrice);
 
